@@ -12,6 +12,13 @@ import com.google.inject.Singleton
 import org.antlr.v4.Tool
 import java.io.File
 
+/**
+ * A simple ANTLR plug-in for Kobalt. Triggered by antlr{} i your build file. Refer to AntlrConfig below
+ * for a list of the options you can specify inside that directive.
+ *
+ * @author Cedric Beust (cedric@beust.com)
+ * @since 3/17/2016
+ */
 @Singleton
 class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<AntlrConfig>)
     : BaseJvmPlugin<AntlrConfig>(configActor), ISourceDirectoryContributor, IClasspathContributor,
