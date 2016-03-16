@@ -14,28 +14,8 @@ import java.io.File
 
 @Singleton
 class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<AntlrConfig>)
-: BaseJvmPlugin<AntlrConfig>(configActor), ISourceDirectoryContributor, IClasspathContributor, ITemplateContributor {
-
-    class Template : JarTemplate("templates/antlr.jar") {
-        override val pluginName: String
-            get() = AntlrPlugin.PLUGIN_NAME
-
-        override val templateDescription: String
-            get() = "Simple ANTLR project"
-
-        override val templateName: String
-            get() = "antlr"
-
-    }
-
-    override val templates = listOf(Template())
-
-    // IClasspathContributor
-    override fun classpathEntriesFor(project: Project?, context: KobaltContext)
-        = listOf(context.dependencyManager.createMaven("org.antlr:antlr4:4.5.2-1"))
-
-    override fun flagsFor(project: Project, context: KobaltContext, currentFlags: List<String>,
-            suffixesBeingCompiled: List<String>) = emptyList<String>()
+    : BaseJvmPlugin<AntlrConfig>(configActor), ISourceDirectoryContributor, IClasspathContributor,
+        ITemplateContributor {
 
     companion object {
         const val PLUGIN_NAME = "Antlr"
@@ -63,6 +43,28 @@ class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<Antl
             return TaskResult()
         }
     }
+
+    // ICompilerFlagContributor
+    override fun flagsFor(project: Project, context: KobaltContext, currentFlags: List<String>,
+            suffixesBeingCompiled: List<String>) = emptyList<String>()
+
+    // IClasspathContributor
+    class Template : JarTemplate("templates/antlr.jar") {
+        override val pluginName: String
+            get() = AntlrPlugin.PLUGIN_NAME
+
+        override val templateDescription: String
+            get() = "Simple ANTLR project"
+
+        override val templateName: String
+            get() = "antlr"
+
+    }
+
+    override val templates = listOf(Template())
+
+    override fun classpathEntriesFor(project: Project?, context: KobaltContext)
+            = listOf(context.dependencyManager.createMaven("org.antlr:antlr4:4.5.2-1"))
 
     // ISourceDirectoryContributor
     val sourceDirectories = arrayListOf<File>()
