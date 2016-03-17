@@ -56,19 +56,17 @@ class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<Antl
             suffixesBeingCompiled: List<String>) = emptyList<String>()
 
     // IClasspathContributor
-    class Template : JarTemplate("templates/antlr.jar") {
-        override val pluginName: String
-            get() = AntlrPlugin.PLUGIN_NAME
 
-        override val templateDescription: String
-            get() = "Simple ANTLR project"
-
-        override val templateName: String
-            get() = "antlr"
-
+    val simpleTemplate = object: JarTemplate("templates/antlr.jar") {
+        override val pluginName = AntlrPlugin.PLUGIN_NAME
+        override val templateDescription = "Simple ANTLR project"
+        override val templateName = "antlr"
     }
 
-    override val templates = listOf(Template())
+    // Somehow, inlining this variable here causes
+    // Error:(61, 18) Kotlin: Property effective visibility 'public' should be the same or less permissive than
+    // its type effective visibility 'local'
+    override val templates = listOf(simpleTemplate)
 
     override fun classpathEntriesFor(project: Project?, context: KobaltContext)
             = listOf(context.dependencyManager.createMaven("org.antlr:antlr4:4.5.2-1"))
@@ -76,13 +74,6 @@ class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<Antl
     // ISourceDirectoryContributor
     val sourceDirectories = arrayListOf<File>()
     override fun sourceDirectoriesFor(project: Project, context: KobaltContext) = sourceDirectories
-}
-
-class AntlrConfig(val project: Project) {
-    // e.g. src/main/antlr
-    var setName = "antlr"
-    var generatedSourceDir = "src/generated/antlr"
-    var antlrSourceDir = "src/main/antlr"
 }
 
 @Directive

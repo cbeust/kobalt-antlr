@@ -6,7 +6,7 @@ val project = project {
     name = "kobalt-antlr"
     group = "com.beust"
     artifactId = name
-    version = "0.1"
+    version = "0.2"
 
     dependencies {
         compile("com.beust:kobalt-plugin-api:0.682",
