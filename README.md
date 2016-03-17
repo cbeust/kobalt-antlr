@@ -27,8 +27,10 @@ Template "antlr" installed
 Build this project with `./kobaltw assemble`
 ```
 
-This command tells Kobalt to download the `kobalt-antlr` plug-in and then to run the template named "antlr". This will generate a simple project with
-a few sample files (look into the `src` directory). We can now build this project:
+This command tells Kobalt to download the `kobalt-antlr` plug-in and then to run the template named `"antlr"`. This will generate a simple project with
+a few sample files (look into the `src` directory).
+
+We can now build this project:
 
 ```
 $ kobaltw assemble
@@ -41,7 +43,7 @@ $ kobaltw assemble
 ───── kobalt-antlr-example:assemble
   Created ./kobaltBuild/libs/kobalt-antlr-example-0.1.jar
   Created ./kobaltBuild/libs/kobalt-antlr-example-0.1-sources.jar
-  Wrote ./kobaltBuild/libs/kobalt-antlr-example-0.1.pom
+  Created ./kobaltBuild/libs/kobalt-antlr-example-0.1.pom
 BUILD SUCCESSFUL (4 seconds)
 ```
 
@@ -60,7 +62,9 @@ val p = project {
 }
 ```
 
-This directive is represented by the [AntlrConfig](https://github.com/cbeust/kobalt-antlr/blob/master/src/main/kotlin/com/beust/kobalt/plugin/antlr/AntlrConfig.kt) class and contains additional options that you can override, such as the location where grammars can be found and where the sources get generated. Please consult the [AntlrConfig](https://github.com/cbeust/kobalt-antlr/blob/master/src/main/kotlin/com/beust/kobalt/plugin/antlr/AntlrConfig.kt) class for the full list of options/
+This directive is represented by the [AntlrConfig](https://github.com/cbeust/kobalt-antlr/blob/master/src/main/kotlin/com/beust/kobalt/plugin/antlr/AntlrConfig.kt) class and contains additional options that you can override, such as the location where grammars can be found and where the sources get generated. Please consult the [AntlrConfig](https://github.com/cbeust/kobalt-antlr/blob/master/src/main/kotlin/com/beust/kobalt/plugin/antlr/AntlrConfig.kt) class for the full list of available options.
+
+
 
 
 
