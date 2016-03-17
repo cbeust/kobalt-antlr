@@ -2,6 +2,5 @@
     <name>Antlr</name>
     <plugin-actors>
         <class-name>com.beust.kobalt.plugin.antlr.AntlrPlugin</class-name>
-        <class-name>com.beust.kobalt.plugin.antlr.Template</class-name>
     </plugin-actors>
 </kobalt-plugin>
