@@ -9,8 +9,8 @@ val project = project {
     version = "0.3"
 
     dependencies {
-        compile("com.beust:kobalt-plugin-api:0.682",
-                "org.antlr:antlr4:4.5.2-1")
+        compile("com.beust:kobalt-plugin-api:1.0.68",
+                "org.antlr:antlr4:4.7")
     }
 
     assemble {
