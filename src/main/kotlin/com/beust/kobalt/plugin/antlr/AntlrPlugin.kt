@@ -28,6 +28,17 @@ class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<Antl
         const val PLUGIN_NAME = "Antlr"
     }
 
+    override fun sourceSuffixes(): List<String> = listOf("g4", "tokens")
+
+    // ICompilerFlagContributor
+    override fun compilerFlagsFor(
+            project: Project,
+            context: KobaltContext,
+            currentFlags: List<String>,
+            suffixesBeingCompiled:
+            List<String>
+    ) = emptyList<String>()
+
     override val name = PLUGIN_NAME
 
     @Task(name = "generateGrammarSource", runBefore = arrayOf("compile"))
@@ -51,13 +62,9 @@ class AntlrPlugin @Inject constructor(override val configActor: ConfigActor<Antl
         }
     }
 
-    // ICompilerFlagContributor
-    override fun flagsFor(project: Project, context: KobaltContext, currentFlags: List<String>,
-            suffixesBeingCompiled: List<String>) = emptyList<String>()
-
     // IClasspathContributor
 
-    val simpleTemplate = object: JarTemplate("templates/antlr.jar") {
+    val simpleTemplate = object: FileJarTemplate("templates/antlr.jar") {
         override val pluginName = AntlrPlugin.PLUGIN_NAME
         override val templateDescription = "Simple ANTLR project"
         override val templateName = "antlr"
